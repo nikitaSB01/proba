@@ -1,0 +1,422 @@
+@import "knight.scss";
+/*!обнуление/////////////////////////////////*/
+$fz: 60px;
+//сокращение
+%tplborder {
+  border-bottom: 10px dashed rgb(228, 16, 16);
+  // пример (@extend %tplborder;)
+} //шаблон
+@mixin fontz($fz, $c, $bc) {
+  font-size: $fz;
+  color: $c;
+  background-color: $bc;
+}
+
+@mixin mwh($m-w, $w, $m-h, $h) {
+  max-width: $m-w;
+  width: $w;
+  max-height: $m-h;
+  height: $h;
+}
+@mixin minwh($m-w, $w, $m-h, $h) {
+  min-width: $m-w;
+  width: $w;
+  min-height: $m-h;
+  height: $h;
+}
+@mixin mww($m-w, $w) {
+  max-width: $m-w;
+  width: $w;
+}
+@mixin mhh($m-h, $h) {
+  max-height: $m-h;
+  height: $h;
+}
+// пример (@include fontz(20px, red, green);)  миксы
+@font-face {
+  font-family: "Roboto-Regular"; /* Имя шрифта */
+  src: url(fonts/Roboto-Regular.ttf) format(truetype); /* Путь к файлу со шрифтом */
+}
+
+////////////////////////////////////////
+html,
+body {
+  height: 100%;
+}
+body {
+  //margin: 0px auto;
+  font-family: "Roboto-Regular", sans-serif;
+}
+.wrapper {
+  //для того чтобы ограичить контентную зону;
+  display: flex; //для того чтобы прижать footer вниз
+  min-height: 100%; //для того чтобы прижать footer вниз
+  overflow: hidden; //для того чтобы прижать footer вниз
+  flex-direction: column; //для того чтобы прижать footer вниз
+}
+.container {
+  //для того чтобы ограичить контентную зону;
+  // box-sizing: content-box;
+  max-width: 956px;
+  margin: 0 auto;
+  padding: 0px 15px;
+  @media (max-width: 1124px) {
+    max-width: 970px;
+  }
+  @media (max-width: 992px) {
+    max-width: 750px;
+  }
+  @media (max-width: 769px) {
+    max-width: none;
+    padding: 0px 8px;
+  }
+}
+////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+.main {
+  flex: 1 1 auto; //для того чтобы прижать footer вниз
+
+  &__body {
+    @media (max-width: 440px) {
+      padding-bottom: 40px;
+    }
+  }
+
+  &__section-one {
+    @include mwh(1124px, 100%, 364px, 100%);
+    margin: 0 auto;
+    //@include minwh(956px, 100%, 364px, 100%);
+  }
+  &__section-bacground {
+    @include mwh(1124px, 100%, 364px, 100%);
+    // background-color: rgb(179, 55, 55);
+    background-image: url("../img/img2/main.one/photo.png");
+    padding: 80px 0px;
+    @media (max-width: 440px) {
+      padding: 0px;
+      width: 100%;
+      min-height: 255px;
+      //todoooooooooooooooooooooooooo
+    }
+  }
+  &__section-two {
+    min-height: 80px;
+    @media (max-width: 440px) {
+      min-height: 50px;
+    }
+  }
+
+  &__section-three {
+  }
+}
+.container-section-bacground {
+  @include mwh(956px, 100%, 364px, 100%);
+}
+.section-one {
+  &__item {
+    background-color: rgb(255, 255, 255);
+    @include mwh(389px, 100%, 204px, 100%);
+    border-radius: 10px;
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.item {
+  &__title {
+    padding-bottom: 62px;
+    h2 {
+      font-family: "Roboto-Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 42px;
+      color: #1d1d1d;
+    }
+  }
+  &__subtitle-time {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__subtitle {
+    h6 {
+      font-family: "Roboto-Regular", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #626262;
+    }
+  }
+
+  &__time {
+    .btn {
+      background-color: #262626;
+      border-radius: 100px;
+      padding: 8px 16px;
+      p {
+        font-family: "Roboto-Regular", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+        color: #ffffff;
+      }
+    }
+  }
+}
+//!---------------------BURGER-------------------------------
+
+.section-two {
+  &__nav {
+    padding: 31px 0px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 40px;
+    @media (max-width: 440px) {
+      justify-content: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__nav-item {
+    //???????????????????????????????????????????????
+    & {
+      color: #626262;
+    }
+    &:hover {
+      color: #327430;
+    }
+    //&:visited {color: #d41919; }
+    //???????????????????????????????????????????????
+
+    text-decoration: none;
+    font-family: "Roboto-Regular" sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+//*----------------------------------------------------
+.section-two {
+  &__nav {
+    border-bottom: 1px solid #cfcece;
+    @media (max-width: 440px) {
+      border-bottom: none;
+    }
+  }
+}
+.nav {
+  &__navi {
+    display: flex;
+    justify-content: center;
+    //padding: 20px;
+  }
+}
+.navi {
+  &__nav ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 40px;
+    @media (max-width: 440px) {
+      column-gap: 10px;
+      flex-direction: column;
+      min-height: 120px;
+      padding-bottom: 10px;
+    }
+    a {
+      color: #626262;
+    }
+    a:hover {
+      color: #327430;
+    }
+    //&:visited {color: #d41919; }
+    //???????????????????????????????????????????????
+    a {
+      text-decoration: none;
+      font-family: "Roboto-Regular" sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}
+
+.navi {
+}
+
+#icon-burger {
+  width: 30px;
+  height: 30px;
+}
+#burger,
+[for="burger"] {
+  display: none;
+}
+
+@media (max-width: 440px) {
+  [for="burger"] {
+    display: block;
+    //position: fixed;
+    // right: 20px;
+    // top: 20px;
+    text-align: center;
+  }
+  nav {
+    display: none;
+    background: rgba(152, 227, 255, 0.2);
+  }
+  #burger:checked + label + nav {
+    display: block;
+  }
+}
+//*----------------------------------------------------
+//!--------------------/BURGER--------------------------------
+.section-three {
+  &__header {
+    padding-top: 56px;
+    padding-bottom: 32px;
+    display: flex;
+    @media (max-width: 440px) {
+      padding-top: 0px;
+      justify-content: center;
+    }
+    h4 {
+      font-family: "Roboto-Regular", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 34px;
+      color: #1d1d1d;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 49px;
+    column-gap: 16px;
+    @media (max-width: 769px) {
+      row-gap: 32px;
+    }
+    @media (max-width: 440px) {
+      row-gap: 16px;
+    }
+  }
+}
+.cards {
+  &__column {
+    @include mwh(470px, 100%, 160px, 100%);
+    @media (max-width: 769px) {
+      @include mwh(752px, 100%, 160px, 100%);
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      background-color: rgb(232, 218, 218);
+    }
+    // align-items: flex-start;
+    height: 100%;
+  }
+}
+
+.cards-item {
+  &__icon {
+    order: 1;
+  }
+
+  &__flex-one {
+    img {
+      width: 170px;
+      height: 160px;
+      @media (max-width: 769px) {
+        width: 200px;
+        height: 160px;
+      }
+      @media (max-width: 440px) {
+        width: 102px;
+        height: 102px;
+      }
+    }
+  }
+
+  &__flex-two {
+    @include mww(300px, 100%);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    @media (max-width: 440px) {
+      padding: 0px;
+    }
+  }
+  &__title-subtitle {
+    //word-wrap: break-word;
+    // overflow-x: hidden;
+    //overflow: hidden;
+    // text-overflow: ellipsis;
+    //white-space: nowrap;
+
+    h5 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: "Roboto-Regular", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #1d1d1d;
+      padding-bottom: 4px;
+    }
+    h6 {
+      font-family: "Roboto-Regular", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 21px;
+      color: #626262;
+    }
+  }
+
+  &__pricee {
+    p {
+      font-family: "Roboto-Regular", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 21px;
+      color: #1d1d1d;
+    }
+  }
+}
+.button-container {
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  //@include mwh(80px, 100%, 80px, 100%);
+  &__btn {
+    background-color: #59bd5a;
+    width: 80px;
+    height: 80px;
+    @media (max-width: 440px) {
+      width: 64px;
+      height: 64px;
+    }
+    //@include mwh(80px, 100%, 80px, 100%);
+  }
+}

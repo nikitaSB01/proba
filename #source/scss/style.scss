@@ -1,0 +1,426 @@
+@import "knight.scss";
+/*!обнуление/////////////////////////////////*/
+$fz: 60px;
+//сокращение
+%tplborder {
+  border-bottom: 10px dashed rgb(228, 16, 16);
+  // пример (@extend %tplborder;)
+} //шаблон
+@mixin fontz($fz, $c, $bc) {
+  font-size: $fz;
+  color: $c;
+  background-color: $bc;
+}
+
+@mixin mwh($m-w, $w, $m-h, $h) {
+  max-width: $m-w;
+  width: $w;
+  max-height: $m-h;
+  height: $h;
+}
+@mixin minwh($m-w, $w, $m-h, $h) {
+  min-width: $m-w;
+  width: $w;
+  min-height: $m-h;
+  height: $h;
+}
+@mixin mww($m-w, $w) {
+  max-width: $m-w;
+  width: $w;
+}
+@mixin mhh($m-h, $h) {
+  max-height: $m-h;
+  height: $h;
+}
+// пример (@include fontz(20px, red, green);)
+//миксы
+////////////////////////////////////////////
+html,
+body {
+  height: 100%;
+}
+body {
+  //margin: 0px auto;
+  font-family: "Roboto", sans-serif;
+}
+.wrapper {
+  //для того чтобы ограичить контентную зону;
+  min-height: 100%; //для того чтобы прижать footer вниз
+  display: flex; //для того чтобы прижать footer вниз
+  overflow: hidden; //для того чтобы прижать footer вниз
+  flex-direction: column; //для того чтобы прижать footer вниз
+}
+.container {
+  box-sizing: content-box;
+  max-width: 956px;
+  margin: 0 auto;
+  padding: 0px 15px;
+  @media (max-width: 1124px) {
+    max-width: 970px;
+  }
+  @media (max-width: 992px) {
+    max-width: 750px;
+  }
+  @media (max-width: 769px) {
+    max-width: none;
+    padding: 0px 8px;
+  }
+}
+
+//header///////////////////////////////////////
+header {
+  width: 100%;
+  //@include mwh(1124px, 100%, 72px, 100%);
+  top: 0px;
+  position: fixed;
+  //background-color: rgb(244, 232, 232);
+  z-index: 3;
+  background-color: #ffffff;
+}
+//TODO сделать чтобы шапка была на 100% по браузеру
+.header {
+  &__body {
+    //margin-left: 81px;
+    //margin-right: 87px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 6px 4px -4px #d4dbe0;
+
+    @media (max-width: 769px) {
+      margin: 0px;
+    }
+  }
+
+  &__logo {
+    margin: auto 0px auto 0px;
+    @media (max-width: 769px) {
+      padding-left: 8px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+  }
+}
+.item-header {
+  &__button-entrance {
+    margin: auto;
+    width: 78px;
+    height: 40px;
+    background-color: #fff;
+    color: #000000;
+    border: 1px solid #e0e0e0;
+    border-radius: 10%;
+    p {
+      font-weight: bold;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+
+  &__button-basket {
+    background-color: #fff;
+    margin-left: 16px;
+    width: 40px;
+    height: 72px;
+    img {
+      @include mwh(40px, 100%, 72px, 100%);
+    }
+  }
+}
+//main////////////////////////////////////////////////////
+.main {
+  flex: 1 1 auto; //для того чтобы прижать footer вниз
+}
+.main {
+  &__body {
+    padding-top: 72px;
+    padding-bottom: 80px;
+    @media (max-width: 769px) {
+      padding-bottom: 48px;
+    }
+  }
+
+  &__search-form {
+    margin: 56px auto 56px auto;
+    @include mwh(962px, 100%, 24px, 100%);
+    box-sizing: border-box;
+    @media (max-width: 769px) {
+      padding: 0px 8px;
+    }
+
+    form {
+      border-bottom: 1px solid #757575;
+      opacity: 0.3;
+    }
+    input {
+      @include mwh(962px, 100%, 24px, 100%);
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #626262;
+    }
+  }
+
+  &__header {
+    margin: 0px auto 16px 0px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+    color: #1d1d1d;
+    @media (max-width: 769px) {
+      margin-left: 0px;
+      padding-left: 8px;
+    }
+  }
+
+  &__cards {
+    //margin: 0px 87px auto 81px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    @media (max-width: 769px) {
+      margin: 0px 0px 0px 0px;
+      //padding: 0px 8px;
+    }
+    @media (max-width: 440px) {
+      justify-content: center;
+    }
+  }
+
+  &__column {
+    @include mwh(308px, 100%, 366px, 100%);
+    &:hover {
+      background: #f3efef;
+    }
+    @media (max-width: 769px) {
+      @include mwh(368px, 100%, 346px, 100%);
+      img {
+        @include mwh(308px, 100%, 256px, 100%);
+      }
+    }
+    @media (max-width: 321px) {
+      @include mwh(308px, 100%, 356px, 100%);
+      img {
+        @include mwh(308px, 100%, 246px, 100%);
+      }
+    }
+  }
+}
+.item-main {
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 4px;
+    h5 {
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #1d1d1d;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    h6 {
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #626262;
+    }
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    p {
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 13px;
+      line-height: 21px;
+      color: #1d1d1d;
+    }
+  }
+  &__icon {
+    img {
+      @include mwh(368px, 100%, 256px, 100%);
+    }
+  }
+}
+
+.footer {
+  //@include minwh(1124px, 100%, 552px, 100%);
+  background-color: #262626;
+  &__body {
+    //margin: 0px 81px 0px 87px;
+    background-color: #262626;
+    @media (max-width: 769px) {
+      @include mww(768px, 100%);
+
+      margin: 0;
+      padding: 0px 8px;
+    }
+    @media (max-width: 441px) {
+      @include mww(420px, 100%);
+      margin: 0;
+      padding: 0px 8px;
+    }
+    //????????????точно ли здесь надо установить df?
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  &__header {
+    margin-top: 51px;
+    margin-bottom: 41px;
+  }
+
+  //&__logo {}
+
+  &__row {
+    box-sizing: border-box;
+    border-top: 1px solid rgb(216, 197, 197);
+    border-bottom: 1px solid rgb(223, 203, 203);
+  }
+  &__wrapper-columns {
+    @include mww(720px, 100%);
+    padding-top: 32px;
+    padding-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @media (max-width: 441px) {
+      flex-direction: column;
+      row-gap: 23px;
+    }
+  }
+  &__column {
+  }
+
+  &__button {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(223, 203, 203);
+  }
+
+  &__column-button {
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    @media (max-width: 441px) {
+      justify-content: center;
+    }
+  }
+
+  &__row-help {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  &__nav {
+  }
+}
+.links-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  &__language {
+    margin-bottom: 33px;
+  }
+
+  &__sending {
+    @include mwh(92px, 100%, 60px, 100%);
+  }
+
+  &__sending-logo {
+    padding-bottom: 17px;
+    a div {
+      display: inline-block;
+      color: #49a144;
+    }
+  }
+
+  &__sending-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__facebook-button {
+  }
+
+  &__twitter-button {
+  }
+
+  &__inst-button {
+  }
+}
+.nav-footer {
+  &__links {
+  }
+  &__link-padding-bottom {
+    &:not(:last-child) {
+      padding-bottom: 23px;
+    }
+  }
+
+  &__link {
+    a {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      color: #ffffff;
+    }
+  }
+  &__links-bottom {
+    display: flex;
+    column-gap: 15%;
+    &__link div {
+      margin-bottom: 0px;
+    }
+    @media (max-width: 441px) {
+      flex-direction: column;
+      row-gap: 23px;
+    }
+  }
+}
+.footer-button {
+  &__as img {
+    @include mwh(120px, 100%, 40px, 100%);
+  }
+
+  &__gp img {
+    @include mwh(120px, 100%, 40px, 100%);
+  }
+}
+.button-container {
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  //@include mwh(80px, 100%, 80px, 100%);
+  &__btn {
+    background-color: #59bd5a;
+    width: 80px;
+    height: 80px;
+    @media (max-width: 440px) {
+      width: 64px;
+      height: 64px;
+    }
+    //@include mwh(80px, 100%, 80px, 100%);
+  }
+}
